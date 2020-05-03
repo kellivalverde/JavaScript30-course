@@ -62,6 +62,10 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%; /* makes pivot point on the right side*/
+      transform:rotate(90deg); /* sets all hands to 12:00 */
+      transition: all 0.05s; 
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
