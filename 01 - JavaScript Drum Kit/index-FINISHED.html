@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -57,27 +59,33 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
-  function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
-  }
+  <script>
 
-  function playSound(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if (!audio) return;
+    function playSound(e){
+      //finds the audio for each key when hit
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //because it's a variable - ES6 template-> ${}
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)    // animation
 
-    key.classList.add('playing');
-    audio.currentTime = 0;
-    audio.play();
-  }
+      if (!audio) return; // stops function if it doesn't have audio associated with it
+      
+      audio.currentTime = 0; //rewinds audio sound to the beginning so if you hit it multiple times in scuccession, it will play each time  
+      audio.play();
+      key.classList.add('playing');
+    }
 
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  window.addEventListener('keydown', playSound);
-</script>
+    function removeTransition(e){
+      if(e.propertyName !=='transform')return; //skip if it's noat a transform
+      console.log(e.propertyName);
+      this.classList.remove('playing');  
+    }
+    
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));  // make function -> above
+    window.addEventListener('keydown',playSound);
+
+  </script>
 
 
 </body>
+
 </html>
