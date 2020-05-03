@@ -64,8 +64,7 @@
     function playSound(e){
       //finds the audio for each key when hit
       const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //because it's a variable - ES6 template-> ${}
-      // animation
-      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`) 
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)    // animation
 
       if (!audio) return; // stops function if it doesn't have audio associated with it
       
