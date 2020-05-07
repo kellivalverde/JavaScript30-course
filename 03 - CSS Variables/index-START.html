@@ -9,7 +9,7 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> <!--"data-sizing"  is just a data- attibute that was made up for a purpose -> sizing here -->
 
     <label for="blur">Blur:</label>
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
@@ -21,7 +21,7 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
-    /* CSS can have variables now! but they have to have -- */
+    /* CSS can have variables now! but they have to have var(-- ...) */
     :root {
       --base: #ffc600;
       --spacing: 10px;
@@ -61,7 +61,18 @@
   </style>
 
   <script>
-    
+    const inputs = document.querySelectorAll('.controls input');  //gives you a node list -> looks like an array [], but not an array. A node list can be converted to a node list.
+    function handleUpdate(){
+      const suffix = this.dataset.sizing || '';
+      console.log(this.name);
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
+    }
+    //need to iterate over each node in the list with a forEach loop -> listen for a 'change' event
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+
 
   </script>
 
