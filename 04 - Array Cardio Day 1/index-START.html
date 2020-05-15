@@ -103,9 +103,31 @@
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+          //1st: inspect w/ devtools and find the html element that contains the boulevard elements in the above page -> mw-category
+          //2nd find html links ('a') inside that -> could do this in one line...
+              //but need to change it into an array -> is just a Node list in the browser
+                  // was ... const links = category.querySelectorAll('a'); 
+                  // const links = Array.from(category.querySelectorAll('a'));  ... or write like below with ES6 spread [...] -> takes iterables out of the node list and puts them in the array
+         //3rd convert those to a list of names
+         //4th filter for streetNames that include 'de' = 12 -> subset
+
+        //  const category = document.querySelector('.mw-category');
+        //  const links = [...category.querySelectorAll('a')]; 
+        //  const de = links
+        //         .map(link => link.textContent)
+        //         .filter(streetName => streetName.includes('de'));
+          
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+      
+      const alpha = people.sort((lastOne, nextOne) => {
+        const [aLast, aFirst] = lastOne.split(', ');
+        const [bLast, bFirst] = nextOne.split(', ');
+        return aLast > bLast ? 1 : -1;
+      });
+      console.log(alpha);
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
