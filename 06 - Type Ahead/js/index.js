@@ -34,7 +34,7 @@ function displayMatches(){
     console.log(matchArray);
     // 10 now loop over array and make list items - use backticks for templated info
     const html = matchArray.map(place => {
-        //12 make another regex that matches city name to imput and highlights it - replaces with class hl
+        //12 make another regex that matches city name to imput and highlights it - replaces with class hl - HIGHLIGHT
 
         const regex = new RegExp(this.value, 'gi');
         
