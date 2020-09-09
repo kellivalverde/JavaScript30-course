@@ -1,8 +1,8 @@
 // ********** Please note, these comments are ONLY notes to self so I can trace how I did the tuturial 
 // ********** I would remove for production code!
 
+// this is hitting a cities .JSON file -> API
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-// ^^^ this is hitting a cities .JSON file  -> API
 
 // 1 - Make an empty array for the cities to go into
 const cities = [];
@@ -42,11 +42,11 @@ function displayMatches(){
         // 13 do the same for state name
         const stateName = place.state.replace(regex, `<span class=\"hl"\>${this.value}</span>`);
 
-
+        // 15 add commas to population, too
         return `
         <li>
-        <span class="name">${cityName}, ${stateName}</span>
-        <span class="population">${place.population}</span>
+        <span class="name">${cityName}, ${stateName}</span> 
+        <span class="population">${numberWithCommas(place.population)}</span>
         </li>
         `;
     }).join(''); //11 turns into one big string instead of an array
