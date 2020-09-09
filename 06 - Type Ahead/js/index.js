@@ -18,8 +18,8 @@ fetch(endpoint)
 
 function findMatches(wordToMatch, cities){
     return cities.filter(place => {
-        // here we need to figure out if the city or state matches what was searched. Need some regexes
-        //how to put a var into a regular expression? 
+        // 7 here we need to figure out if the city or state matches what was searched. Need some regexes
+        //8 how to put a var into a regular expression? 
         const regex = new RegExp(wordToMatch, 'gi'); //'gi' = global, insensitive (non-case sensitive)
         return place.city.match(regex) || place.state.match(regex)
     });
@@ -29,12 +29,24 @@ function displayMatches(){
    // console.log(this.value);
     const matchArray = findMatches(this.value, cities);
     console.log(matchArray);
+    // 10 now loop over array and make list items - use backticks for templated info
+    const html = matchArray.map(place => {
+        return `
+        <li>
+        <span class="name">${place.city}, ${place.state}</span>
+        <span class="population">${place.population}</span>
+        </li>
+        `;
+    }).join(''); //turns into one big string instead of an array
+    suggestions.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
 
+// 9 now go back up to displayMatches function and use it to match an array
+// got the data! get the data and fnctionality first - then worry about hooking it up to even listeners, etc. 
+
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
 
-//now go back up to displayMatches function and use it to  
