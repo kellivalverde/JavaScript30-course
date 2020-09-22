@@ -12,11 +12,13 @@ ctx.lineWidth = 100;
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
+let hue = 0;
 
 
 function draw(e){  //e = event
    if (!isDrawing) return; // stops function from running when mouse is not down
     console.log(e);
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 
     ctx.beginPath();
     // start from
@@ -25,7 +27,7 @@ function draw(e){  //e = event
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY]; // new ES6 way to write this
-
+    hue++;
 }
 
 canvas.addEventListener('mousedown', (e) => {
